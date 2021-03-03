@@ -6,6 +6,7 @@ export default class Screen{
     canvasId;
     copperlicht;
     copperScene;
+    copperCamera;
 
     constructor(scene,pauseOnError,canvasId){
         this.scene=scene;
@@ -18,7 +19,15 @@ export default class Screen{
         this.stop=true;
         this.copperlicht=new CL3D.CopperLicht(this.canvasId);
         this.setupCopperScene();
+        this.setupCopperCamera();
     };
+
+    setupCopperCamera(){
+        let cam = new CL3D.CameraSceneNode();
+        this.copperScene.getRootSceneNode().addChild(cam);
+        this.copperScene.setActiveCamera(cam)
+        this.copperCamera=cam;
+    }
 
     setupCopperScene(){
         this.copperScene = new CL3D.Scene();

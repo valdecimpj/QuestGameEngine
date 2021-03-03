@@ -15,4 +15,5 @@ class {
     static processObject(gameObject,scene,gameEngine,scriptConfig){
 
     }
+    
 }
