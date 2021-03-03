@@ -3,11 +3,11 @@ import DefaultScriptConfig from './ScriptConfig.js';
 export default class Script{
     defaultScriptConfig;
 
-    constructor(){
+    static setupObject(gameObject,scene,gameEngine,scriptConfig){
         this.defaultScriptConfig=new DefaultScriptConfig();
     }
 
-    processObject(gameObject,scene,gameEngine){
+    static processObject(gameObject,scene,gameEngine,scriptConfig){
 
     }
 }

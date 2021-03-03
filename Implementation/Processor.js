@@ -19,16 +19,28 @@ export default class Processor{
     setupProcessor(){
         this.scriptList=[];
         this.stop=true;
-        this.frameDelayMS=1000/30;
+        this.frameDelayMS=1000/34;
         this.previousTime=0;
     }
 
     loadScriptList(scriptPathList,dataLoadingTracker){
-        for(scriptPath in scriptPathList){
-            ScriptService.loadScript(scriptPath,(loadedScript)=>{
-                this.scriptList[scriptPath](loadedScript);
+        for(let scriptPathIndex in scriptPathList){
+            let scriptPath=scriptPathList[scriptPathIndex];
+            let fullPath = this.gameEngine.engineRootPath+"Data/Script/"+scriptPath;
+            ScriptService.loadScript(fullPath,(loadedScript)=>{
+                this.scriptList[scriptPath]=loadedScript;
                 dataLoadingTracker.scripts.amountLoaded++;
             })
+        }
+    }
+
+    setupScene(){
+        for(let gameObjectIndex in this.scene.gameObjects){
+            let gameObject=this.scene.gameObjects[gameObjectIndex];
+            for(let scriptIndex in gameObject.data.scripts){
+                let script = gameObject.data.scripts[scriptIndex];
+                this.setupScript(script,gameObject)
+            }
         }
     }
 
@@ -43,11 +55,15 @@ export default class Processor{
 
     processScene(){
         let startTime=Date.now();
-        let fps = parseInt(1/(startTime-this.previousTime)*1000);
+        let fps = 1/(startTime-this.previousTime)*1000;
         this.previousTime=startTime;
-        for(gameObject in this.scene.gameObjects)
-            for(script in gameObject.data.scripts)
-                this.runScript(script.path,gameObject)
+        for(let gameObjectIndex in this.scene.gameObjects){
+            let gameObject=this.scene.gameObjects[gameObjectIndex];
+            for(let scriptIndex in gameObject.data.scripts){
+                let script = gameObject.data.scripts[scriptIndex];
+                this.runScript(script,gameObject)
+            }
+        }
         let timeProcessing=Date.now()-startTime;
         if(startTime%10==0)
             console.log("CPU Time: "+timeProcessing+"ms\nFPS: "+fps);
@@ -58,7 +74,11 @@ export default class Processor{
             setTimeout(()=>{this.processScene()},timeUntilNextFrame);
     }
 
-    runScript(scriptPath,gameObject){
-        this.scriptList[scriptPath].processObject(gameObject,this.scene,this.gameEngine);
+    setupScript(script,gameObject){
+        this.scriptList[script.path].setupObject(gameObject,this.scene,this.gameEngine,script.scriptConfig);
+    }
+
+    runScript(script,gameObject){
+        this.scriptList[script.path].processObject(gameObject,this.scene,this.gameEngine,script.scriptConfig);
     }
 }

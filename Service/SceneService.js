@@ -1,5 +1,5 @@
 export default class SceneService{
-    loadScene(scenePath,callback){
+    static loadScene(scenePath,callback){
         
     }
 }

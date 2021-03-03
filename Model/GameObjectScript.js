@@ -5,7 +5,7 @@ export default class GameObjectScript{
     scriptConfig;
 
     constructor(){
-        path='';
+        this.path='';
         this.scriptConfig=new ScriptConfig();
     }
 }

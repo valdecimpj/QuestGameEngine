@@ -3,42 +3,55 @@ export default class Screen{
     scene;
     pauseOnError;
     stop;
-    canvas;
+    canvasId;
     copperlicht;
     copperScene;
 
-    constructor(scene,pauseOnError,canvas){
+    constructor(scene,pauseOnError,canvasId){
         this.scene=scene;
         this.pauseOnError=pauseOnError;
-        this.canvas=canvas;
+        this.canvasId=canvasId;
         this.setupRender();
     }
 
     setupRender(){
         this.stop=true;
-
-        if(this.canvas.id=="")
-            this.canvas.id="canvas3d";
-        this.copperlicht=new CL3D.CopperLicht(this.canvas.id);
-        this.copperScene = new CL3D.Scene();
-
+        this.copperlicht=new CL3D.CopperLicht(this.canvasId);
+        this.setupCopperScene();
     };
 
+    setupCopperScene(){
+        this.copperScene = new CL3D.Scene();
+        this.copperlicht.addScene(this.copperScene);
+        this.copperScene.setBackgroundColor(CL3D.createColor(1, 0, 0, 0));
+        this.copperScene.setRedrawMode(CL3D.Scene.REDRAW_EVERY_FRAME);
+    }
+
+    restartScreen(){
+        let nodes = this.copperScene.getAllSceneNodesOfType("mesh")
+        for(let index in nodes){
+            let node = nodes[index]
+            node.getParent().removeChild(node);
+        }
+    }
+
     preloadTextureList(texturePathList,dataLoadingTracker){
-        alert("Todo");
-        for(texturePath in texturePathList)
-            console.log("todo");
+        console.log("Todo Screen.preloadTextureList");
+        //for(texturePath in texturePathList)
     }
 
     startRender(){
         if(!this.copperlicht.initRenderer())
             alert("Browser doesn't support WebGL!!");
-        this.copperlicht.addScene(this.copperScene);
-        this.copperScene.setRedrawMode(CL3D.Scene.REDRAW_WHEN_SCENE_CHANGED);
+        /*var skybox = new CL3D.SkyBoxSceneNode();
+		this.copperScene.getRootSceneNode().addChild(skybox);
+        console.log("asd")
+        for (var i=0; i<6; ++i)
+			skybox.getMaterial(i).Tex1 = engine.getTextureManager().getTexture("assets/QuestGameEngine/Data/Texture/crate_wood.jpg", true);*/
     }
 
     stopRender(){
-        alert("THERE'S NOT STOPPING COPPERLICHT!!!! no.. really....")
+        this.setupRender();
     }
 
 }
