@@ -1,18 +1,13 @@
 class {
-    static defaultScriptConfig={
-        scriptParameters:[
-            {
-                name:"parameter1",
-                value:"value1"
-            }
-        ]
-    };
+    static defaultScriptParameters = {
+        parameter1:"value1"
+    }
 
-    static setupObject(gameObject,scene,gameEngine,scriptConfig){
+    static setupObject(gameObject,scene,gameEngine,scriptParameters){
         alert("it works!!!");
     }
 
-    static processObject(gameObject,scene,gameEngine,scriptConfig){
+    static processObject(gameObject,scene,gameEngine,scriptParameters){
 
     }
     

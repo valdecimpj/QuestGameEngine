@@ -1,4 +1,4 @@
-export default class ScriptParameters{
+export default class ScriptParameter{
     name;
     value;
 

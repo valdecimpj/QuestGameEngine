@@ -75,10 +75,10 @@ export default class Processor{
     }
 
     setupScript(script,gameObject){
-        this.scriptList[script.path].setupObject(gameObject,this.scene,this.gameEngine,script.scriptConfig);
+        this.scriptList[script.path].setupObject(gameObject,this.scene,this.gameEngine,script.scriptParameters);
     }
 
     runScript(script,gameObject){
-        this.scriptList[script.path].processObject(gameObject,this.scene,this.gameEngine,script.scriptConfig);
+        this.scriptList[script.path].processObject(gameObject,this.scene,this.gameEngine,script.scriptParameters);
     }
 }
