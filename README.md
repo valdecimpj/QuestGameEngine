@@ -39,8 +39,8 @@ GameEngine is QuestGameEngine's main class, can be used to operate the whole eng
 Scripts are to be created at QuestGameEngine/Data/Script and will be executed accordingly for each GameObject that includes them:
 **Method** | **Parameters** | **Description**
 --- | --- | ---
-**static setupObject(gameObject:GameObject,scene:Scene,<br/>gameEngine:GameEngine,scriptParameters:GameObjectScript[])** | **gameObject**: The GameObject that executed the script. <br/> **scene**: Engine's active Scene. <br/> **gameEngine**: Instance of actual GameEngine. <br/> **scriptParameters**: Caller GameObject's parameters for this script. | This method will be run when a scene is first executed and has the objective of setting up the game.
-**static processObject(gameObject:GameObject,scene:Scene,<br/>gameEngine:GameEngine,scriptParameters:GameObjectScript[])** | **gameObject**: The GameObject that executed the script. <br/> **scene**: Engine's active Scene. <br/> **gameEngine**: Instance of actual GameEngine. <br/> **scriptParameters**: Caller GameObject's parameters for this script. | This method will be run every frame and has the objective of adding logic to the game.
+**static setupObject(gameObject:GameObject,<br/>scene:Scene,gameEngine:GameEngine,<br/>scriptParameters:GameObjectScript[])** | **gameObject**: The GameObject that executed the script. <br/> **scene**: Engine's active Scene. <br/> **gameEngine**: Instance of actual GameEngine. <br/> **scriptParameters**: Caller GameObject's parameters for this script. | This method will be run when a scene is first executed and has the objective of setting up the game.
+**static processObject(gameObject:GameObject,<br/>scene:Scene,gameEngine:GameEngine,<br/>scriptParameters:GameObjectScript[])** | **gameObject**: The GameObject that executed the script. <br/> **scene**: Engine's active Scene. <br/> **gameEngine**: Instance of actual GameEngine. <br/> **scriptParameters**: Caller GameObject's parameters for this script. | This method will be run every frame and has the objective of adding logic to the game.
 
 **Attribute** | **Description**
 --- | ---
