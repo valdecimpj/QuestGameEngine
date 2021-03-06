@@ -1,6 +1,6 @@
 # QuestGameEngine
 
-QuestGameEngine is a WebGL game engine made using parts of [Copperlicht](https://www.ambiera.com/copperlicht/) for academic purposes.
+QuestGameEngine is a **work in progress** WebGL game engine made using parts of [Copperlicht](https://www.ambiera.com/copperlicht/) for academic purposes.
 
 ## Usage
 
