@@ -3,7 +3,6 @@ export default class GameObjectData{
     id;
     name;
     scripts;
-    meshPathPreloadList;
     texturePathPreloadList;
 
     constructor(){

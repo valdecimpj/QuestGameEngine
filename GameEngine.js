@@ -62,7 +62,7 @@ export default class GameEngine{
     }
 
     loadScene(scenePath){
-        console.log("TODO GameEngine.loadScene!!")
+        alert("TODO GameEngine.loadScene!!")
     }
 
     loadingEndedCheck(){
